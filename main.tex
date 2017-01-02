@@ -1,0 +1,78 @@
+\documentclass[a4paper, 11pt]{report}
+\usepackage[utf8]{inputenc} % Change according your file encoding
+\usepackage[left=3cm,top=3cm,right=3cm,bottom=3cm]{geometry}
+\usepackage{graphicx}
+\graphicspath{ {resources/img/} }
+\usepackage{url}
+\usepackage{minted}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\usepackage{pgfgantt}
+\usepackage{booktabs}
+\usepackage[catalan]{babel}
+\usepackage{eurosym}
+\usepackage{xcolor,colortbl}
+\usepackage{comment}
+\usepackage{pdflscape}
+\usepackage[nottoc,notlof,notlot]{tocbibind}
+\usepackage{listings}
+
+\newcommand\frontmatter{%
+    \cleardoublepage
+  %\@mainmatterfalse
+  \pagenumbering{roman}}
+
+\newcommand\mainmatter{%
+    \cleardoublepage
+ % \@mainmattertrue
+  \pagenumbering{arabic}}
+
+\newcommand\backmatter{%
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+ % \@mainmatterfalse
+   }
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\title{TFG}
+\author{Marc Juberó}
+\date{December 2016}
+
+\begin{document}
+{\fontfamily{lmr}\selectfont}
+\input{sections/cover}
+\clearpage
+\newpage
+$\ $
+
+\thispagestyle{empty}
+\frontmatter
+\input{abstract}
+\input{agraiments}
+\tableofcontents
+\clearpage
+\listoftables
+\clearpage
+
+\chapter*{Glossari}
+\input{glossari}
+
+% Taula d figures i demés
+
+\mainmatter
+\chapter{Introducció i contextualització}
+\input{sections/intro.tex}
+\chapter{Gestió del projecte}
+\input{sections/gestio.tex}
+\chapter{Arquitectura}
+\input{sections/arquitectura.tex}
+\chapter{Desenvolupament}
+\input{sections/desenvolupament.tex}
+\chapter{Conclusions}
+\input{sections/conclusions.tex}
+\backmatter
+
+\end{document}

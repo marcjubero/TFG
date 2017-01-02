@@ -1,0 +1,48 @@
+\section{Blockchain}
+\label{blockchain}
+Blockchain és una estructura de dades ordenada, una llista de blocs de transaccions on cada bloc, es troba ellaçat amb el seu anterior.\\
+\newline Es pot enmagatzemar en un arxiu de text pla, així com en una base de dades simple. Els “Bitcoin core clients” enmagatzemen les metadades de la blockchain emprant els sistema de base de dades LavelDB de Google. Els blocs tenen un enllaç enrere, fent referència al seu bloc previ dins de la cadena.\\
+\newline Generalment, es visualitza el concepte de blockchain com una pila vertical; la visualització dels blocn empilats, un a sobre de l’altre, resulta en l’ús del terme “height” (alçada) per a referir-se a la distància entre el primer i l’últim bloc, i “top” o bé “tip” per afer referència a l’últim bloc que ha passat a formar part de la blockchain.\\
+\newline Cada bloc dins de la blockchain s’identifica amb un hash; aquest es genera mitjançant mitjançant l’algorisme criptogràfic SHA256, a la capçalera. Cada bloc a més, fa referècia a l’anterior, conegut com a “parent block” mitjançant el camp “previous block hash” de la capçalera del bloc. En altres paraules, cada bloc conté el hash corresponent al seu pare dins de la seva capçalera. la seqüència de hash que linquen cada block amb el seu pare, crea una cadena cap enradere fins a arribar al primer bloc creat, conegut com a “genesis block”.\\
+\newline Tot i que un block sols té un pare, temporalment pot tenir multiples fills; cadescún dels fills fa referència al mateix bloc com el seu pare i té el mateix hash (el del pare) dins del camp “previous block hash” de la seva capçalera. Aquest cas, es dona en el moment que es fa un fork a la blockchain, una situació de caire temporal que es produeix quan es descobreixen diversos blocs de forma simulània per diferents miners.\\
+Finalment, només un dels blocs passarà a formar part de la lockchain, i el “fork” quedarà resolt. Tot i que els blocs puguin tenir un o més fills, cada bloc disposa d’un únic pare. Això es deu a que un bloc té un únic camp “previous block hash” referenciant al seu únic pare.\\
+\newline El camp “previous block hash” es troba dins de la capcelera del bloc i, afectant directament al hash dels blocs fills. La identitat d’un bloc fill canvia si la identitat del pare ho fa; és a dir, quan el pare és modificat, el seu hash canvia i inevitablement l’apuntador (“previous block hash”) del bloc fill s’ha de modificar amb el nou hash del pare. Aquest canvi, alhora provoca que el hash del bloc nét es veig també modificat i així succesivament. Aquest efecte cascada asseura que un cop un bloc té diverses generacions que el segueixen, no pot ser canviat sense haver de forçar el recalculat de cadescún dels hash dels blocs sunsegüents. Aquest tipus de recalculat, requereix d’una capacitat de computació molt gran, la existència d’una llarga cadena de blocs fa que la història de la blockchain sigui inmutable; la qual cosa es converteix en una de les seves principals característiques a nivell de seguretat.
+
+\subsection{Estructura del bloc}
+Un bloc és una estructura de dades que agrega transacions per a incluir-les a una espècie de llibre de comptes de caràcter públic, la blockchain. El block està format per una capçalera, on es guarden metadades, seguit d’una llarga lista de transaccions (que formen el gruix principal del bloc). \\
+\newline La capçalera ocupa 80 bytes fixes, mentre que una transacció de mitjana pesa com a mínm uns 250 bytes i un bloc de promig conté més de 500 transacions.\\
+\newline A la següent taula es pot veure més detalladament l'estructura general d'un bloc:
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|} 
+    \hline
+    \textbf{Mida} & \textbf{Camp} & \textbf{Descripció} \\ [0.2ex] 
+    \hline
+    4 bytes & Block size & La mida del bloc que segueix aquest camp, en bytes \\
+    80 bytes & Block header & Camps corresponents a la capçalera  \\
+    1-9 bytes & Transacion counter & Quantes transaccions segueixen \\
+    Variable & Transactions & Transaccions registrades en el bloc  \\[0.1ex] 
+    \hline
+    \end{tabular}
+    \caption{Estructura general d'un bloc}
+    \label{block_structure}
+\end{table}
+
+\subsection{Capçalera del bloc}
+La capçalera del bloc està formada per tres bloc de metadades: 
+\begin{itemize}
+    \item Un primer bloc amb una referència al hash del bloc anterior, que conecta el bloc en qüestió amb el seu anterior dins de la cadena
+    \item  Un segon bloc de metadades que fa referència a temes de mineria de bitcoin
+    \item Un tercer bloc correponent a l’arrel del “merkle tree”, una estuctura de dades per agregar de formaeficient les transaccions del bloc.
+\end{itemize}
+
+\subsection{Identificadors de bloc: Hash de capçalera i altura del bloc}
+El primer identificador d’un bloc es el seu hash, una emprempta digital, generada a partir de realitzar el hash (SHA256) de la capçalera 2 vegades. El resultat és un hash de 32 bytes anomenat “block hash”, tot i que seria més correcte anomenar-lo “block header hash”, ja que per a calcular-lo es fa servir únicament la capçalera del bloc. Un “block hash” identifica de forma inequívoca i única cada bloc.\\
+\newline Cal notar que aquest hash no s’inclou dins del que s’anomena “block’s data structure”, tampoc quan es transmet el block per la xarxa ni quan es persisteix el bloc i passa a formar part de la blockchain. Per contra, cada node calcula aquest hash en el moment en el rep el bloc a través de la xarxa. El “block hash” es guarda en una base de dades separada com part de les metadades del bloc, per tal de facilitar-ne la indexació i l’accés als bloc del disc.\\
+\newline Una segona forma d’identificar els blocs és mitjançant la seva posició dins de la blockchain, aquesta posició rep el nom d’altura. El primer bloc creat té altura 0. 
+Així doncs, un bloc es pot identificar tant per el seu “block hash” o bé per l’altura dins de la blockchain. Cada block afegit sobre aquest primer bloc, afegeix 1 a l’altura de la blockchain. Segons blockchain.info, l’altura de la cadena a data de 21 de Desembre de 2016, és de 444495 blocs, des de gener de 2009.\\
+\newline Cal tenir en compte però, que així com el “block hash” és únic per a cada bloc, l’altura no ho és; es poden donar situacions en que més d’un bloc competeixi per la mateixa posició dins de la blockchain. 
+De la mateixa manera que el “block hash”, l’altura és una dada que no forma part de l’estructura de dades del bloc ni s’enmagatzema dins del bloc, sino que cada node calcula de forma dinàmica l’altura del bloc en el moment en el que es rep a través de la xarxa. Igual que el “block hash”, l’altura es guarda en una base de dades de metadades.
+
+   
+
