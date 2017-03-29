@@ -1,8 +1,8 @@
 \documentclass[a4paper, 11pt]{report}
 \usepackage[utf8]{inputenc} % Change according your file encoding
-\usepackage[left=3cm,top=3cm,right=3cm,bottom=3cm]{geometry}
+\usepackage[left=3cm, top=3cm, right=3cm, bottom=3cm]{geometry}
 \usepackage{graphicx}
-\graphicspath{ {resources/img/} }
+\graphicspath{{resources/img/}}
 \usepackage{url}
 \usepackage{minted}
 \usepackage[hidelinks]{hyperref}
@@ -16,6 +16,9 @@
 \usepackage{pdflscape}
 \usepackage[nottoc,notlof,notlot]{tocbibind}
 \usepackage{listings}
+\usepackage{csquotes}
+
+\captionsetup[figure]{font=scriptsize}
 
 \newcommand\frontmatter{%
     \cleardoublepage
@@ -67,6 +70,8 @@ $\ $
 \input{sections/intro.tex}
 \chapter{Gestió del projecte}
 \input{sections/gestio.tex}
+\chapter{Bitcoin i blockchain}
+\input{sections/bitcoin.tex}
 \chapter{Arquitectura}
 \input{sections/arquitectura.tex}
 \chapter{Desenvolupament}
