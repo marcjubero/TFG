@@ -1,2 +1,81 @@
 \section{Visió global}
-\label{globalview}
+\label{arquitectura:visio_global}
+%\textbf{Oscar}:\textit{Visió general del diseny (que fa el front end i que fa el backend, en general) (tipic grafic de 3 capes front/back/dades) Aqui haurás de posar diseny de la BD, suposo que el cas d'us general (posa els ninotets de enginyeria del software i com interactuen amb el sistema, el flux d'execució) i en el backend fes capsetes amb els moduls}
+Si prenem el projecte d'aquest TFG des d'un punt de vista global, sense prendre en consideració els detalls particulars de cada un dels elements que el formen, veiem que respon a l'arquitectura representada a la Figura \ref{fig:arquitectura_global}.
+\begin{figure}[h!]
+\includegraphics[scale=0.4]{sections/arquitectura/modern_global2.jpg}
+\centering
+\caption{Arquitectura en tres capes}
+\label{fig:arquitectura_global}
+\end{figure}
+\newline A nivell conceptual, busca independitzar la lògica de negoci, de la lògica de presentació, del model de dades. Podent entendre cada un dels elements com entitats independents, en ocasions amb la seva pròpia arquitectura.\\
+\newline En el context del TFG, el projecte està format principalment per dos elements, \textit{frontend} i \textit{backend}, que es comuniquen entre ells mitjançant crides HTTP\footnote{Hypertext Transfer Protocol}.
+%En el context concret d'aquest TFG, l'adopció d'aquesta arquitectura es tradueix en un \textit{frontend}, que es comunica mitjançant els mètodes \textit{Get}, \textit{Post}, \textit{Put} i \textit{Delete} del protocol HTTP\footnote{Hypertext Transfer Protocol}, amb un \textit{backend}, que s'encarrega de servir les dades per mostrar.
+\input{sections/arquitectura/subsections/frontend}
+\clearpage
+\input{sections/arquitectura/subsections/backend}
+%\subsection{Frontend}
+%Correspon a la part client del projecte, a través de la qual l'usuari final interactuarà amb el sistema (visualitzarà pdf's, signarà documents, etc.).\\
+%Tal i com hem dit anteriorment, es pot entendre com una entitat independent, en aquest cas desenvolupada sota l'arquitectura MVC\footnote{Model View Controller}.\\
+%\begin{figure}[h]
+%\includegraphics[scale=0.4]{sections/arquitectura/mvc.png}
+%\centering
+%\caption{Model-Vista-Controlador}
+%\label{fig:arquitectura_mvc}
+%\end{figure}
+%\newline L'arquitectura en aquest cas, ve donada pel mateix \textit{framework} que s'ha fet servir per al desenvolupament  (AngularJS).\\
+%Per fer-ne un breu resum, seguint l'arquitectura anteriorment exposada, el \textit{frontend} s'estructura en tres grups.\\
+%\newline Per una banda el \textbf{model}, donat que el client web no disposa d'\textit{storage} pròpi, entendrem com a model el component dins del projecte que s'encarrega de realitzar les peticions al \textbf{backend} i rebre'n els resultats (ja siguin satisfactoris o no).\\
+%\newline Per l'altre banda la \textbf{vista}, que es tracta de la part visual, aquella que rep les interaccions de l'usuari i les transmet cap a la següent, i última capa, el controlador.\\
+%\newline El \textbf{controlador} s'encarrega d'interpretar les interaccions realitzades per l'usuari i actuar en conseqüència. Aquestes actuacions poden oscil·lar entre amagar o deshabilitar elements de la pantalla, demanar dades al model per pintar-les per pantalla, entre altres.
+%\subsubsection{Diagrama de casos d'ús}
+%\begin{figure}[h]
+%\includegraphics[scale=0.4]{sections/arquitectura/frontend_usecase.png}
+%\centering
+%\caption{Casos d'ús \textit{frontend}}
+%\label{fig:cas_us_frontend}
+%\end{figure}
+%La Figura \ref{fig:cas_us_frontend} mostra els diferents casos d'ús del mòdul desenvolupat que pot dur a terme un usuari client.\\
+%\newline L'objectiu principal del \textit{frontend}, és permetre rebre a l'usuari les dades necessàries tals com el consentiment informat i el \textit{feedback} necessari per saber si l'operació de signatura s'ha dut a teme amb èxit o no. En cas de negatiu, s'ha de mostrar el missatge d'error pertinent.\\
+%\newline Així doncs, la part client del projecte té els següents propòsits:
+%\begin{enumerate}
+%    \item Permetre la visualització i descàrrega del consentiment informat.
+%    \item Permetre a l'usuari la signatura del consentiment, si així ho desitja.
+%    \item Permetre a l'usuari demanar un nou codi OTP, en cas de que el que hagi rebut prèviament via SMS hagi caducat.
+%\end{enumerate}
+%Totes les operacions anteriors, es tradueixen a tot un seguit de crides HTTP a un backend mitjançant els mètodes GET i POST.
+%\subsection{Backend}
+%Està pensat i desenvolupat com una API Rest que dóna accés als recursos emmagatzemats a la base de dades, a través d'unes rutes (o \textit{endpoints}) definides als controladors.\\
+%\newline L'acés a les rutes es realitza a través d'HTTP, fent ús dels mètodes \textit{GET}, \textit{POST}, \textit{PUT} i \textit{DELETE}, anàlogament, podriem dir que corresponen als mètodes \textit{CRUD}\footnote{\textbf{C}reate \textbf{R}ead, \textbf{U}pdate i \textbf{D}elete} d'una base de dades.\\
+%\newline A nivell d'arquitectura, no es pot dir que faci ús d'una arquitectura pròpiament dita, per contra, fa ús de tot un seguit de conceptes d'enginyeria del software que tenen com a objectiu la producció d'un còdi net, mantenible i sobre tot, ben estructurat.
+%Concretament, els conceptes són: \textit{clean architecture}, \textit{SOLID} i \textit{TDD}.\\
+%\clearpage
+%\subsubsection{Clean Architecture}
+%\begin{figure}[h]
+%\includegraphics[scale=0.4]{sections/arquitectura/cleanArchitecture.jpg}
+%\centering
+%\caption{Clean Architecture}
+%\label{fig:clean_architecture}
+%\end{figure}
+%La figura anterior (Figura \ref{fig:clean_architecture}), ens presenta un model conceptual on les diferents capes són independents les unes de les altres. La capa més interna, no coneix a la capa més externa i viceversa, obligant l'aplicació de patrons \textit{adapter} per la comunicació entre capes. \\
+%\newline D'aquesta forma s'aconsegueix un codi amb una granularitat elevada, fàcil de mantenir donat el poc solapament que hi ha entre els diferents components del projecte, i amb components fàcilment substituïbles.\\
+%\subsubsection{S.O.L.I.D}
+%És l'acrònim de:
+%\begin{itemize}
+%    \item \textit{\textbf{S}ingle responsability}
+%    \item \textit{\textbf{O}pen close}
+%    \item \textit{\textbf{L}iskov substitution}
+%    \item \textit{\textbf{I}nterface segregation}
+%    \item \textit{\textbf{D}ependency inversion}
+%\end{itemize}
+%Els cinc punts anteriors, són un seguit de convencions, un seguit d'idees enfocades a la producció d'un codi net, estructurat i fàcil de mantenir.\\
+%\newline Per aconseguir-ho, treballa amb idees tals com la responsabilitat única de les classes, classes obertes a l'extensió, però no a la modificació, injecció de dependències, ús de interfícies a mode de contracte, etc.\\
+%\newline Són tot un seguit de regles que funcionen perfectament amb les idees presentades anteriorment referents a la \textit{Clean Architecture}
+
+%\newline L'arquitectura representada, és l'arquitectura clàssica d'un servei web en el més estricte sentit de la paraula.\\
+%\newline La figura anterior (Figura \ref{fig:arquitectura_global}) respon al que coneixem com arquitectura web.\\
+%\newline Parlant en termes generals, l'arquitectura mostrada anteriorment es basa en un client que fa peticions a una infraestructura, normalment i donats els temps que corren en forma de API Rest, que fa d'intermediari entre aquest client i la part del model de dades, generalment la base de dades del projecte, i tot englobat dins del mateix paquet.\\
+%\newline Situant-nos en un context més actual amb les diferents llibreries existents i amb diversitat d'arquitectures, cada una enfocada a donar solució a un problema concret, podríem dir que realment ens trobem amb una arquitectura similar a la mostrada a la Figura \ref{fig:arquitectura_global}.
+%\newline L'exemple anterior, ens mostra dos components separats. Ambdós amb la seva pròpia arquitectura i comunicats generalment entre ells motjançant HTTP \footnote{Hypertext Transfer Protocol} i els mètodes \textit{GET}, \textit{POST}, \textit{PUT} i \textit{DELETE}.\\
+%\newline La gran majoria de projectes actuals, es composen principalment de dos elements: un \textit{frontend} (client), en el nostre cas executat sobre un navegador web a través de la qual l'usuari final interactua amb tot el sistema, i un segon element, anomenat \textit{backend}, normalment en format API, la funció del qual és, a través d'un seguit de mètodes, permetre al client servir-se de les dades emmagatzemades en el moment que ho necessiti.\\
+%\newline En el nostre cas particular, el \textit{frontend} del projecte respon a una arquitectura MVC \footnote{Model View Contoller} com es mostra a la figura \ref{fig:arquitectura_mvc}

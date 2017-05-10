@@ -1,0 +1,116 @@
+\section{Descripció de tasques}
+\label{gestio:tasques}
+%La idea d'aquesta secció és la d'il·lustrar les tasques existents en un primer estadi del projecte.
+
+%\subsection{Aspectes legals de la signatua electrònica}
+%La idea d'aquesta tasca, és la de posar en context el projecte en tot al que fa referència a consentiments informats, validesa de signatures electròniques, què s'ha de tenir en compte per tal de que no es pugui repudiar un document, etc etc.
+
+%\subsection{Estudi tecnològic}
+%Un cop entès el context en el qual es desenvolupa el projecte i l'objectiu que es busca aconseguir, cal estudiar una mica el mercat actual, per tal de veure què ens ofereix, quines eines es poden fer servir i, en cas d'haver-ho de menester, quines parts s'hauran de desenvolupar en la seva totalitat.\\
+%\newline D'aquesta tasca, en neixeran les diferents alternatives a partir de les quals, s'haurà de fer una tria que acabarà per determinar el rumb a seguir del projecte.\\
+%\newline Finalment,  de les possibles opcions (amb els seus itineraris marcats) se n'haurà d'escollir una que marcarà definitivament el rumb a seguir dins del projecte.
+
+%\subsection{Eines i frameworks}
+%El desenvolupament de la plataforma es fa amb dos coneguts frameworks, \textit{Symfony}\cite{symfony} i \textit{AngularJS}\cite{angular}.\\
+%Donada la desconeixença de les tecnologies emprades per al desenvolupament general de la plataforma, cal un petit procés d'habituallament a l'entorn de desenvolupament.\\
+%Aquest procés d'aprenentatge es realitzarà durant la contextualització a nivell legal i l'estudi tecnològic mencionat a l'apartat anterior.
+
+%\subsection{Desenvolupament}
+%Un cop triades les tecnologies sobre les quals es basarà el projecte, i després del temps de d'aprenentatge en les tecnologies emprades per al desenvolupament de la plataforma principal, es pot procedir a començar el desenvolupament del projecte.\\
+%\newline Aquesta part és la que, evidentment, més temps requerirà.\\
+%Cal dir que abans de començar a "picar codi", i un cop identificats els requisits, cal planificar les diferents tasques i prioritzar-les, per tal de seguir el que dicta la metodologia \textit{Scrum}\cite{scrum}.
+
+%\subsection{Validació i testeig}
+%Durant tot el procés de desenvolupament, s'anirà validant i testejant tot el que es vagi desenvolupanet per tal de que tot vagi com s'espera; el procés de testeig i validació en permetrà identificar possibles mancances del disseny original i corretgir possibles errors que vagin sorgint durant el procés de desenvolupament, aconseguint d'aquesta forma que no passi res per alt.\\
+%\newline Aquesta tasca es  repetirà tants cops sigui necessari durant tot el procés de desenvolupament, per tal que el mòdul desenvolupat quedi com s'espera.
+
+%\subsection{Integració}
+%Com es porta dient des de bon principi, aquest projecte es tracta d'un mòdul, inicialment desenvolupat de forma independent, però que al finalitzar el seu desenvolupament, s'espera que s'integri amb el nucli de la plataforma, per tal d'oferir les fucionalitats desitjades.\\
+%\newline Doncs bé, un cop acabat el desenvolupament i haver superat la fase de validació i testeig, es procedirà a integrar el mòdul dins de la plataforma, realitzant les modificacions pertinents.
+
+%\subsection{Documentació}
+%Tot i no ser la part més important, la documentació sobre el per què de les decisions preses serà útil a l'hora de, en un futur, mantenir el codi desenvolupat.
+Al llarg d'aquesta secció, es descriuran les tasques que s'han identificat en la fase de planificació del projecte.\\
+\newline \textit{\textbf{Nota important}: Algunes de les tasques aquí descrites, sópn posteriors a la planificació inicial, fruit dels problemes amb l'entitat encarregada de certificar i signar els consentiment informats.\\
+Així doncs, per una fàcil identificació, s'afegirà un asterisc (\textbf{*}) al costat del nom de la tasca.}
+\begin{itemize}
+    \item Definició model BD
+        \begin{itemize}
+            \item \textbf{Entorn}: \textit{Backend}
+            \item \textbf{Descripció}:\\
+            Un cop identificats els requisits i les funcionalitats, cal dissenyar un model de base de dades per el projecte que s'ajusti als requeriments.
+        \end{itemize}
+    \item Generació de documents
+        \begin{itemize}
+            \item \textbf{Entorn}: \textit{Backend}
+            \item \textbf{Descripció}: \\
+            El sistema ha de ser capaç de generar consentiments informats i comprovants de signatura amb les dades que rebi de la base de dades
+        \end{itemize}
+        \item Petició de consentiment informat
+        \begin{itemize}
+            \item \textbf{Entorn}: \textit{Frontend}
+            \item \textbf{Descripció}: \\
+            L'usuari ha de poder demanar a la plataforma que li mostri el consentiment informat
+        \end{itemize}
+    \item Visualització de pdf
+        \begin{itemize}
+            \item \textbf{Entorn}: \textit{Frontend}
+            \item \textbf{Descripció}: \\
+            Des del client web cal poder veure el consentiment informat que es rep des del servidor.
+        \end{itemize}
+    \item Validació d'identitat \textbf{*}
+        \begin{itemize}
+            \item \textbf{Entorn}: \textit{Frontend} \& \textit{Backend}
+            \item \textbf{Descripció}:
+            \begin{itemize}
+                \item \textbf{Frontend}: L'usauri ha d'inserir la contrasenya de la plataforma per tal de poder procedir en la signatura del consentiment informat
+                \item \textbf{Backend}: El \textit{backend} haurà de comprovar les credencials de l'usuari i respondre en conseqüència.
+            \end{itemize}
+        \end{itemize}
+    \item Generació de codis OTP \textbf{*}
+        \begin{itemize}
+            \item \textbf{Entorn}: \textit{Backend}
+            \item \textbf{Descripció}: \\
+            El sistema ha de ser capaç de generar codis otp (com s'especifica a l'RFC6238) i enviar-los via SMS
+        \end{itemize}
+    \item Signatura del consentiment \textbf{*}
+        \begin{itemize}
+            \item \textbf{Entorn}: \textit{Frontend} \& \textit{Backend} 
+            \item \textbf{Descripció}:
+            \item \textbf{Frontend}: L'usauri ha d'escriure el codi OTP que ha rebut per SMS i enviar-lo al \textit{backend}
+                \item \textbf{Backend}: Haurà de comprovar el codi OTP que rep del \textit{frontend} i actuar en conseqüència.
+        \end{itemize}
+    \item Integració Blockchain \& TSA \textbf{*}
+        \begin{itemize}
+            \item \textbf{Entorn}: \textit{Backend}
+            \item \textbf{Descripció}: \\
+            Un cop s'hagi signat el consentiment, la plataforma ha de publicar el \textit{hash} del comprovant de signatura a la \textit{blockchain} i a una \textit{TimeStamp Autority} per tal d'assegurar la validesa de la signatura del document.\\
+            S'ha de crear un servei que permeti gestionar aquest procediment de forma independent.
+        \end{itemize}
+    %\item Integració FreeTSA
+    %    \begin{itemize}
+    %        \item \textbf{Entorn}: \textit{Backend}
+    %        \item \textbf{Descripció}:\\
+    %        Un cop es signi el consentiment, s'ha de crear fer \textit{timestamping} amb el \textit{hash} del comprovant de signatura al servei de \textit{FreeTSA}.\\
+    %        S'ha de desenvolupar de tal manera que aquesta funcionalitat de tal forma que mantingui la independència de la resta del projecte.
+    %    \end{itemize}
+    \item Integració projecte a la plataforma \textit{MoG}
+        \begin{itemize}
+            \item \textbf{Entorn}: \textit{Frontend} \& \textit{Backend}
+            \item \textbf{Descripció}: \\
+            Unir ambdues parts del codi del TFG amb el codi de la plataforma \textit{MoG}
+        \end{itemize}
+    \item Validar la correcta integració amb la plataforma
+        \begin{itemize}
+            \item \textbf{Entorn}: \textit{Frontend} \& \textit{Backend}
+            \item \textbf{Descripció}: \\
+            Comprovar que tots els testos funcionen, fer proves manuals de tots els procediments i processos (incloent el de signatura).
+        \end{itemize}
+    \item Documentació
+        \begin{itemize}
+            \item \textbf{Entorn}: --
+            \item \textbf{Descripció}: Escriure la memòria del projecte i documentar les parts que puguin ser interessants a la plataforma de documentació de \textit{Made of Genes}
+        \end{itemize}
+\end{itemize}
+
+

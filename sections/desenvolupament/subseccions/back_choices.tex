@@ -1,0 +1,67 @@
+\subsection{Cerca d'alternatives}
+\label{desenvolupament:alternatives}
+En vistes del succeït, el no poder acabar la integració del tercer de confiança amb el \textit{backend} de l'aplicació, suposa un canvi de rumb molt important, per no mencionar l'endarreriment del projecte, que provoca l'inici d'un procés de recerca d'alternatives viables per a poder continuar.\\
+\newline Després d'un procés de recerca i valoració, els candidats finals són tres:
+\begin{itemize}
+    \item Buscar un tercer de confiança alternatiu.
+    \item Adquirir un certificat reconegut.
+    \item Sistemes de \textit{timestamping} distribuïts (\textit{blockchain}).
+\end{itemize}
+La tendència és la de buscar un tercer de confiança alternatiu que s'adapti a les necessitats del projecte. Malauradament, el gruix d'entitats alternatives, tenen un funcionament similar al de la primera i la resta ofereixen llibreries on l'esforç necessari per a una bona integració és massa elevat i requereix massa temps, temps del que no es disposa.
+\newline Un cop eliminada la primera opció, manquen les opcions que tenen a veure amb la implementació total d'un sistema que permeti emetre, signar i validat consentiments informats.\\
+\newline Tal i com es diu a la secció \ref{estatArt:signature} d'aquest mateix document, l'ús d'un determinat sistema de signatura electrònica queda reconegut davant la llei sempre i quan les dues parts interessades hi estiguin d'acord.\\ La plataforma principal ja disposa d'un sistema d'SMS funcional. Per tant sols manca el desenvolupament del servei capaç de crear/validar codis OTP i decidir la millor forma de certificar el contingut dels documents generats.\\
+\newline La primera de les alternatives a tenir en compte és l'adquisició d'un certificat digital emès per una CA\footnote{Certification Authority} reconeguda que permeti a \textit{Made of Genes} la certificació dels seus propis documents.\\
+\newline El principal inconvenient d'aquesta segona opció és la necessitat de renovar cada cert temps el certificat.\\
+%No obstant, de moment es postula com la opció que més s'adapta a les necessitats del projecte.\\
+\newline La tercera opció que es planteja, és la de fer ús de les capacitats ``tamper-proof'' de la \textit{blockchain} (descrita amb més detall a la secció \ref{estatArt:blockchain}) per tal de certificar el contingut dels documents que s'han signat.\\
+\newline Aquesta opció, a primera vista no té cap mena d'inconvenient, donat que es una alternativa de cost zero i que existeixen serveis que permeten l'accés a la \textit{blockchain} d'una forma senzilla i ràpida.\\
+\newline Després de valorar les alternatives, s'ha decidit posar en pràctica la tercera via.
+
+%En front del fracàs i conseqüent endarreriment en el projecte que suposa el no poder culminar la integració amb el tercer de confiança, cal començar un procé de selecció per a trobar un nou full de ruta dins del desenvolupament del projecte.\\
+%\newline Els tercers de confiança alternatius, o bé ofereixen un servei similar al que ja ha quedat descartat o la llibreria que ofereixen per a integrar el seu servei no s'ajusta al que es busca o bé necessita una quantitat de feina desmesurada, i que impossibilitaria l'execució del TFG a temps.\\
+%\newline Un cop eliminada la possibilitat d'externalitzar la certificació i signatura dels consentiments de documents, cal trobar la forma de suplir aquestes dos tasques.\\
+%Per la part que correspon a la signatura del document, sempre que la llei ho permeti es vol continuar utilitzant el concepte de codi OTP i signatura digital.\\
+%Tal i com es diu a la secció \ref{estatArt:signature} d'aquest mateix document, l'ús d'un determinat sistema de signatura electrònica queda reconegut davant la llei sempre i quan les dues parts interessades hi estiguin d'acord.\\
+%Per tant, queda coberta la part de signatura. Manca trobar una solució per la part de certificació de documents.
+%\newline La segona alternativa a contemplar en referència a assegurar el contingut dels documents, passa per l'obtenció d'un certificat digital reconegut.\\
+%\newline Fer ús d'un certificat digital emès per una CA\footnote{Certification Authority} reconeguda implica la total autonomia a l'hora de legitimar el contingut dels consentiments emesos per la plataforma.\\
+%\newline Per contra el temps que es necessita per implantar i implememtar aquesta solució és major del que es busca. Addicionalment, un certificat s'ha de renovar cada cert temps, fet que suma punts en contra.\\
+%\newline La tercera i última alternativa, consisteix en fer ús de tecnologies descentralitzades, com es el cas de \textit{blockchain} (Secció \ref{estatArt:blockchain}) que permeten el fer segellat de temps d'informació d'una forma a prova de modificacions.\\
+%\newline Aquesta tercera opció, és la que després de valorar les alternatives, és la que s'ha acabat implementant al TFG.
+
+%La primera reacció al ser conscients del fracàs i el conseqüent endarreriment que suposa el no poder finalitzar la integració amb \textit{Lleida.net}, és la de buscar una alternativa a aquest que permeti continuar "externalitzant" la part de certificació i signatura de documents.\\
+%El resultat és una llista de tercers de confiança que, o bé per l'ús d'una plataforma similar per a la gestió de documents, o bé per que les eines que ofereixen no solucionen el problema, o bé per que el cost d'integració fent ús de les seves eines suposa un problema major, la idea de fer ús d'un tercer de confiança com a entitat certificadora i de validació de documents queda totalment descartada.\\
+%\newline La següent opció a tenir en compte, es basa en l'obtenció d'un certificat pròpi emés per una Autoritat Certificadora (CA) reconeguda, modificar el mòdul per certificar els documents emesos pel mateix i fer ús d'un sistema d'OTP pròpi.\\
+%Aquest, és un procés costós i que requereix implementar tota la infraestructura necessària per a la certificació i posterior val·lidació.\\
+%Per aquests motius, és una línia que es decideix abandonar en post d'idees un xic més innovadores però sempre tenint-la en compte per si en algun moment s'ha de tornar a quest model.\\
+%\newline Finalment, la tercera alternativa es basa en l'ús d'una tecnologia emergent anomenada \textit{Blockchain}, popularitzada per ser la tecnologia en la que la moneda virtual \textit{Bitcoin} basa el seu funcionament.\\
+%Aquesta última opció, és la que per les raons que s'exposaran a continuació ha acabat sent implementada al projecte.\\
+%\newline \textit{Made of Genes}, com s'ha dit diverses vegades al llarg del document, és una \textit{startup}, altrament dit empresa jove, amb recursos limitats i que no es poden malbaratar. Per aquest motiu, un dels factors determinants en l'execució dels diferents projectes i la presa de decisions, és el cost que tindran aquests per l'empresa.\\
+%Partint de l'anterior argument, un factor decisiu en la tria de solucions és que suposarà ja no només en temps, si no també en recursos, humans i econòmics.\\
+%La plataforma \textit{Made of Genes} ja disposa d'un sistema d'enviament d'SMS que es re-aporfitarà per a l'enviament de còdis OTP per a la signatura.\\
+%\newline Manca doncs, un sistema que ens permeti validar d'alguna forma el contingut dels documents i assegurar-ne el no repudi en cas de conflictes, en aquest punt es on entra en joc \textit{Blockchain}.\\
+%\newline En capítols anteriors d'aquest document, s'exposa el funcionament i estructura de \textit{blockchain} de forma més extensa.
+%\subsection{Canvis en el projecte}
+%Un cop segurs del nou rumb a seguir, cal valorar els canvis necessaris per adoptar la nova metodologia de funcionament que seguirà el \textit{backend} del projecte.\\
+%Els canvis es poden agrupar en dos grups:
+%\begin{enumerate}
+%    \item Aquells que fan referència a la signatura de consentiments informats.
+%    \item Aquells que fan referència a la validació i a assegurar el no repudi de documents.
+%\end{enumerate}
+
+
+%Fins l'abandonament dels serveis oferts pel tercer de confiança, els documents es signaven mitjançant l'enviament, per part d'aquest tercer, de missatges SMS amb un codi únic (o OTP) generat per a l'ocasió; la idea és dotar a la plataforma de la capacitat de generar aquests codis OTP, d'enviar-los i validar-los.
+%Per a l'enviament, es farà ús del servei ofert per \textit{Clickatell}, un servei que ja es fa servir en altres processos dins de la plaforma \textit{Made of Genes} i que té un cost per missatge molt reduït.\\
+%\newline \textit{Clickatell} ofereix una llibreria en format de \textit{bundle} pensada per integrar amb projectes basats en \textit{Symfony}, framework PHP sobre el que es construeix el \textit{backend} on, el que manca per fer, seguint el principi de desenvolupament S.O.L.I.D, és desenvolupar un servei al voltant de la llibreria que ens permeti independitzar-la del nostre codi; d'aquesta manera aconseguim que si en algun moment apareix una alternativa a \textit{Clickatell} que pel motiu que sigui interessa més, sigui fàcilment substituïble.\\
+%Per a la generació del còdi OTP, farem ús de l'algorisme definit al RFC6238 (TOTP: Time-Based One-Time Password Algorithm) i la variació d'aquest últim definida a l'RFC4226 (HOTP: An HMAC-Based One-Time Password Algorithm).\\
+%\newline \textbf{\textit{Parlar una mica del que diuen els RFC.... P-A-L-A-Z-O}}\\
+%\newline Pel que fa a la validació del contingut dels documents i assegurar el seu posterior no repudi, com ja es va anticipant unes línies enrere, es vol fer servir \textit{Blockchain}.\\
+%La tecnologia de \textit{blockchain} s'explica amb detall al capítol 3 del document.\\
+%\newline Aplicada concretament al projecte que ens ocupa, es busca aprofitar el funcionamet i la potència de \textit{blockchain} per assegurar el no repudi dels documents mitjançant la publicació de l'empremta digital (hash SHA-256) del consentiment informat via petites transaccions de bitcoin.\\
+%Per fer una mica de memòria, el hash d'un document, com s'ha explicat en capítols anteriors del document, és una cadena de caràcters generada partir del contingut del mateix document.\\
+%Unint el hash generat del document a la \textit{blockchain}, s'assegura que el contingut del document que s'acaba de signar, queda registrat on ningú el podrà modificar sense que algú altre se n'adoni; recordem que un cop un bloc actualitza les seves transaccions i les replica a 6 blocs diferents, el contingut d'aquest blocs, i en conseqüencia les transacions registrades, és inmutable.\\
+%Per a dur a terme aquesta tasca, s'ha buscat un servei que ens permeti publicar les empremtes digitals dels documents genetrats a la \textit{blockchain}; el servei es qüestió es l'anomenat \textit{Origin Stamp}.\\
+%\textit{Origin Stamp} és un servei sense ànim de lucre que facilita la publicació de hashos a la \textit{blockchain} a través de micro transaccions de satoshis, la unitat més petita de bitcoin, equivalen a 0.00000001 bitcoins.\\
+%El funcionament del servei és senzill; \textit{Origin Stamp} agrega hashs durant 24 hores a través d'una senzilla API Rest o des del propi portal del servei, que permet pujar fitxers i calcular-ne l'emprempta digital o bé introduïr el propi hash prèviament calculat per l'usuari; un cop superat aquest lapse de 24 hores, realitzen una transacció bitcoin equivalent a un satoshi.\\
+%El contingut d'aquesta transació, és un hash que agrega tots els hash acumulats al llarg d'aquestes 24 hores.\\
+%En cas de que es desitgi la immediata publicació a la blockchain, el servei accepta donacions d'1\$.

@@ -1,0 +1,22 @@
+\subsection{Signatura electrònica}
+\label{estatArt:signature}
+%\textbf{Oscar}: \textit{nou punt, parla de la signatura electrònica, introdueix el tema del OTP-SMS que utilitza la seguretat social i tal, de que hi ha empreses que ho ofereixen (lleida i bla bla bla) i introdueix que el que fan es que actuen com a tercer de confiança}\\
+
+%\textit{A la part de signatura electronica i OTP, no cal que et compliquis. Tu dius "La Ley 59/2003, de 19 de diciembre, de firma electrónica. diu en el seu article 3 que: "10. A los efectos de lo dispuesto en este artículo, cuando una firma electrónica se utilice conforme a las condiciones acordadas por las partes para relacionarse entre sí, se tendrá en cuenta lo estipulado entre ellas." Per tant el que fem es establir un contracte que primer firmen manualment els pacients pero que a partir de llavors firmen mitjançant el seu password. Com que a més a més volem asegurar que el pacient es qui diu ser, fem un doble mecanisme, com fan els bancs o l'estat amb el SMS-OTP. El SMS-OTP, definit en la RFCXXXXX; es basa en el principi que.... I l'expliques per sobre".}\\
+\cite{boe} La llei 59/2003 del 19 de desembre sobre signatura electrònica, article 3 paràgraf 10, diu:\\
+\newline \textit{"A los efectos de lo dispuesto en este artículo, cuando una firma electrónica se utilice conforme a las condiciones acordadas por las partes para relacionarse entre sí, se tendrá en cuenta lo estipulado entre ellas."}\\
+\newline Per tant, en base a aquest article, quan les parts que intervenen en un contracte estan d'acord en la forma en la que es du a terme la signatura del document, aquesta preval per sobre del concepte de signatura que s'especifica al llarg dels 9 punts anteriors.\\
+\newline Prenent com a referència un òrgan estatal com és l'administració pública, els mètodes emprats per aquesta a l'hora d'autenticar de forma segura dels seus usuaris i quins mètodes fa servir per la signatura de documents, podem veure que la tendència, és fer ús del sistema \textit{Cl@ve}, que addicionalment al conegut e-DNI, permet autenticar i signar electrònicament mitjançant un sistema anomenat \textit{Cl@ve PIN}.\\
+\newline \textit{Cl@ve PIN} és un tipus de codi numèric d'una llargada generalment no inferior a 6 dígits, que pren com a característica principal l'existència d'un temps en el qual pot ser utilitzat, passat aquest temps, se n'haurà de demanar un de nou. Aquest tipus de codi rep el nom de \textit{codi únic} o en anglès, \textit{One Time Password}\cite{otp} (\textbf{\textit{OTP}}).\\
+\newline La generacio d'aquests codis OTP, com s'especifica a l'RFC6238, es basa en dos factors:
+\begin{enumerate}
+    \item Un instant de temps, generalment en format unix time (T).
+    \item Un "secret" únic per cada usuari (K).
+\end{enumerate}
+A grans trets, la generació d'un codi únic basat en un instant de temps, respon a la fórmula: 
+\[TOTP = Truncate(K, T)\]
+On \textit{Truncate} representa la funció que calcula el codi a partir dels dos factors esmentats anteriorment.\\
+Internament parlant, l'algorisme pren aquest instant T, el combina amb el "secret" K de l'usuari i, juntament amb una finestra de temps arbitrària que determina el temps d'utilitat del codi, en genera una seqüència amb \textit{n} dígits, que servirà per a autenticar a l'usuari i certificar-ne la identitat.\\
+\newline Veient el model emprat per l'administració pública, hi ha empreses que ofereixen serveis de certificació, validació i signatura de documents, entre altres, seguint els mètodes descrits anteriorment.\\
+\newline Aquestes empreses, reben el nom genèric de ``tercer de confiança''.\\
+\newline En el cas particular d'aquest projecte, l'usuari signa manualment un primer contracte, amb el qual es queda d'acord en l'ús de la seva contrasenya de la plataforma com a mètode de signatura, i com a mesura de seguretat addicional, ús de codis OTP com a mètode de validació en dos passos.

@@ -1,53 +1,53 @@
 \section{Metodologia}
-\label{methodology}
-\subsection{Organització de l'equip}
+\label{gestio:metodologia}
+Al llarg d'aquesta secció es tractaran mecàniques de funcionament i desenvolupament, funcionament d'equip, mètodes de validació, etc.
+\input{sections/gestio/subseccions/metod_orgequip}
+\input{sections/gestio/subseccions/metod_codiversions}
+\input{sections/gestio/subseccions/metod_softsuport}
+\input{sections/gestio/subseccions/metod_validacio}
+%\subsection{Organització de l'equip}
+%Per al desenvolupmanet del projecte s'adoptaran les metodologies emprades a l'empresa, que en aquest cas, són el que s'anomenen metodologies àgils; concretament l'anomenada \textit{Scrum}\cite{scrum}.\\
+%\textit{Scrum} es basa en la realització d'iteracions durant el procés de desenvolupament que reven el nom d'\textit{sprints}. Les esmentades iteracions es composen d'un seguit de tasques que s'han de completar al llarg de la durada dels \textit{sprints}; que acostuma a oscil·lar entre una setmana i un mes.\\
+%Els objectius a assolir durant l'\textit{sprint} es fixen en unes reunions que es duen a terme a l'inici anomenades \textit{Sprint Planning Meeting}.\\
+%Per altra banda, durant l'exercici de l'\textit{sprint} es realitzen reunions periòdiques anomenades \textit{Daily Scrum Meetings}, on es tracta de respondre a les següents preguntes:
+%\begin{itemize}
+%	\item Què vaig fer ahir?
+%	\item Què faré avui?
+%	\item Quins impediments he trobat fins ara?
+%\end{itemize}
+%Les anteriors preguntes intenten donar una visió el més àmplia possible de l'estat del projecte a tots els memebres de l'equip, així com permetre la resolució col·laborativa dels diferents problemes que vagin apareixent al llarg del desenvolupament.\\
+%\textit{Scrum} permet reaccionar de forma àgil a les diferents alteracions que poden sorgir al llarg del desenvolupament i que els desenvolupadors realitzin els canvis pertinents.\\
+%Al tractar-se d'un equip de desenvolupament reduït on la comunicació entre membres és constant, el seguiment de la filosofia \textit{scrum} resulta a vegadas un tant òbvia. Tot i aixó, es respecten les \textit{daylies} a l'inici de cada jornada i els \textit{sprint plannings} a l'inici de cada iteració.
+%\subsection{Codi i control de versions}
+%El desenvolupament del codi del projecte es divideix en dos parts clarament diferenciades:
+%\begin{itemize}
+%	\item \textbf{Backend}: desenvolupat amb Symfony, un dels frameworks PHP més extesos dins de la comunitat PHP per la seva versatilitat i potència.
+%	\item \textbf{Frontend}: desenvolupat amb AngularJS, un framework suportat per Google i  que recentment ha alliberat la release final de la versió 2. Actualment, es postula com un dels principals frameworks 
+%\end{itemize}
+%Pel control de versions es fa ús de \textit{Git}\cite{git}, un sistema de control de versions desenvolupat primerament per Linus Torvalds (creador del kernel de Linux) i que gràcies a plataformes com \textit{GitHub} o \textit{Bitbucket} s'ha convertit en un dels sistemes de control de versions més emprat en el món del desenvolupament de software.\\
+%\newline Per altra banda, per tal d'organitzar el flux de treball dins del repositori, s'ha decidit seguir un esquema com és \textit{Gitflow}\cite{gitflow}.\\
+%A mode de resum, \textit{gitflow} proposa una organització dins del repositori molt clara i estructurada. \\
+%\newpage
+%L'estructura bàsica del repositori comptarà amb dos branques principals:
+%\begin{itemize}
+%	\item \textbf{Master}: en termes més autòctons, la branca de producció. En aquesta branca del repositori sols hi ha codi plenament funcional i testejat. El codi que aquí es troba, està preprat per a ser publicat en qualsevol moment.
+%	\item \textbf{Develop}: aquesta és la branca que es destinarà al desenvolupament del codi pròpiament dit. El codi que aquí es trobi, també haurà d'estar testejat i ésser funcional, però el grau de rigurositat d'aquesta branca és menos que \textit{master}.
+%\end{itemize}
+%Un cop definit el punt de partida, es crearan branques a partir de la branca desenvolupament per a les diferents funcionalitats, aquestes rebran el nom de \textit{feature} seguit del codi de la tasca a desenvolupar. D'aquesta manera les branques queden etiquetades i vinculades amb la tasca.
+%\newline Un cop acabada una tasca, es farà \textit{merge} de la branca \textit{feature-X} cap a la branca de desenvolupament i així successivament.
+%\newline Un cop acabat l'\textit{sprint}, es farà \textit{merge} de la branca desenvolupament cap a la branca \textit{master}. Aquest procediment l'anomenarem \textit{release}.
+%\newline Per a possibles correccions d'última hora, \textit{gitflow} proposa una quarta branca anomenada \textit{bugfix}. Aquesta surt directament de la branca \textit{master}, i està pensada per a correccions de codi ràpides.\\
+%Per tal de mantenir el repositor el més net possible, cada cop que s'acabi una \textit{feature} o un \textit{bugfix} s'ha de tancar la branca creada.
 
-Per al desenvolupmanet del projecte s'adoptaran les metodologies emprades a l'empresa, que en aquest cas, són el que s'anomenen metodologies àgils; concretament l'anomenada \textit{Scrum}\cite{scrum}.\\
-\textit{Scrum} es basa en la realització d'iteracions durant el procés de desenvolupament que reven el nom d'\textit{sprints}. Les esmentades iteracions es composen d'un seguit de tasques que s'han de completar al llarg de la durada dels \textit{sprints}; que acostuma a oscil·lar entre una setmana i un mes.\\
-Els objectius a assolir durant l'\textit{sprint} es fixen en unes reunions que es duen a terme a l'inici anomenades \textit{Sprint Planning Meeting}.\\
-Per altra banda, durant l'exercici de l'\textit{sprint} es realitzen reunions periòdiques anomenades \textit{Daily Scrum Meetings}, on es tracta de respondre a les següents preguntes:
+%\subsection{Software de suport}
+%Com a suport per a la gestió d'\textit{Scrum}\cite{scrum} i del control de versions, així com de documentació interna, es disposa de llicència de la suite d'\textit{Atlassian}\cite{atlassian}, que ofereix diferents aplicatius:
+%\begin{itemize}
+%	\item \textbf{Jira}: per a la gestió de tasques i planificació de les iteracions.
+%	\item \textbf{Confluence}: per a la documentació interna del projecte.
+%	\item \textbf{Bitbucket}: com a repositori de control de versions.
+%\end{itemize}
+%Per altra banda, també es fa servir \textit{Jenkins}\cite{jenkins} per a la integració contínua.
 
-\begin{itemize}
-	\item Què vaig fer ahir?
-	\item Què faré avui?
-	\item Quins impediments he trobat fins ara?
-\end{itemize}
-Les anteriors preguntes intenten donar una visió el més àmplia possible de l'estat del projecte a tots els memebres de l'equip, així com permetre la resolució col·laborativa dels diferents problemes que vagin apareixent al llarg del desenvolupament.\\
-\textit{Scrum} permet reaccionar de forma àgil a les diferents alteracions que poden sorgir al llarg del desenvolupament i que els desenvolupadors realitzin els canvis pertinents.\\
-Al tractar-se d'un equip de desenvolupament reduït on la comunicació entre membres és constant, el seguiment de la filosofia \textit{scrum} resulta a vegadas un tant òbvia. Tot i aixó, es respecten les \textit{daylies} a l'inici de cada jornada i els \textit{sprint plannings} a l'inici de cada iteració.
-
-\subsection{Codi i control de versions}
-El desenvolupament del codi del projecte es divideix en dos parts clarament diferenciades:
-\begin{itemize}
-	\item \textbf{Backend}: desenvolupat amb Symfony, un dels frameworks PHP més extesos dins de la comunitat PHP per la seva versatilitat i potència.
-	\item \textbf{Frontend}: desenvolupat amb AngularJS, un framework suportat per Google i  que recentment ha alliberat la release final de la versió 2. Actualment, es postula com un dels principals frameworks 
-\end{itemize}
-
-Pel control de versions es fa ús de \textit{Git}\cite{git}, un sistema de control de versions desenvolupat primerament per Linus Torvalds (creador del kernel de Linux) i que gràcies a plataformes com \textit{GitHub} o \textit{Bitbucket} s'ha convertit en un dels sistemes de control de versions més emprat en el món del desenvolupament de software.\\
-\newline Per altra banda, per tal d'organitzar el flux de treball dins del repositori, s'ha decidit seguir un esquema com és \textit{Gitflow}\cite{gitflow}.\\
-A mode de resum, \textit{gitflow} proposa una organització dins del repositori molt clara i estructurada. \\
-
-\newpage
-L'estructura bàsica del repositori comptarà amb dos branques principals:
-\begin{itemize}
-	\item \textbf{Master}: en termes més autòctons, la branca de producció. En aquesta branca del repositori sols hi ha codi plenament funcional i testejat. El codi que aquí es troba, està preprat per a ser publicat en qualsevol moment.
-	\item \textbf{Develop}: aquesta és la branca que es destinarà al desenvolupament del codi pròpiament dit. El codi que aquí es trobi, també haurà d'estar testejat i ésser funcional, però el grau de rigurositat d'aquesta branca és menos que \textit{master}.
-\end{itemize}
-Un cop definit el punt de partida, es crearan branques a partir de la branca desenvolupament per a les diferents funcionalitats, aquestes rebran el nom de \textit{feature} seguit del codi de la tasca a desenvolupar. D'aquesta manera les branques queden etiquetades i vinculades amb la tasca.
-\newline Un cop acabada una tasca, es farà \textit{merge} de la branca \textit{feature-X} cap a la branca de desenvolupament i així successivament.
-\newline Un cop acabat l'\textit{sprint}, es farà \textit{merge} de la branca desenvolupament cap a la branca \textit{master}. Aquest procediment l'anomenarem \textit{release}.
-\newline Per a possibles correccions d'última hora, \textit{gitflow} proposa una quarta branca anomenada \textit{bugfix}. Aquesta surt directament de la branca \textit{master}, i està pensada per a correccions de codi ràpides.\\
-Per tal de mantenir el repositor el més net possible, cada cop que s'acabi una \textit{feature} o un \textit{bugfix} s'ha de tancar la branca creada.
-
-\subsection{Software de suport}
-Com a suport per a la gestió d'\textit{Scrum}\cite{scrum} i del control de versions, així com de documentació interna, es disposa de llicència de la suite d'\textit{Atlassian}\cite{atlassian}, que ofereix diferents aplicatius:
-\begin{itemize}
-	\item \textbf{Jira}: per a la gestió de tasques i planificació de les iteracions.
-	\item \textbf{Confluence}: per a la documentació interna del projecte.
-	\item \textbf{Bitbucket}: com a repositori de control de versions.
-\end{itemize}
-Per altra banda, també es fa servir \textit{Jenkins}\cite{jenkins} per a la integració contínua.
-
-\subsection{Validació}
-El mètode de validació que se segueix va lligat amb la metodologia \textit{Scrum}.\\
-\textit{Scrum}, defineix una serie d'iteracions a partir de les quals s'organitza la feina a realitzar al llarga de tot el projecte. En acabar cada una d'aquestes iteracions, per a que el codi sigui acceptat,  aquest ha de ser totalment funcional i presentar-se amb una bateria de tests que garantitzin el seu bon funcionament.
+%\subsection{Validació}
+%El mètode de validació que se segueix va lligat amb la metodologia \textit{Scrum}.\\
+%\textit{Scrum}, defineix una serie d'iteracions a partir de les quals s'organitza la feina a realitzar al llarga de tot el projecte. En acabar cada una d'aquestes iteracions, per a que el codi sigui acceptat,  aquest ha de ser totalment funcional i presentar-se amb una bateria de tests que garantitzin el seu bon funcionament.

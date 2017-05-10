@@ -1,79 +1,46 @@
 \section{Backend}
-\label{backend_dev}
-Entesos el model de negoci de l'empresa i les necessitats a les quals es busca donar solució a través d'aquest Treball de Final de Grau, era necessari desenvolupar un projecte el més complet i funcional possible per tal de integrar-lo posteriorment amb la plataforma \textit{Made of Genes}.\\
-A partir de les dades proporcionades i dels diferents casos d'ús i escenaris a contemplar, es comença a dissenyar un primer esquema de model de dades i de funcionalitats.\\
-\newline Al llarg dels apartats d'aquesta secció veurem com va anar evolucionant, i quines decisions es van prendre en relació al \textit{backend} al llarg del transcurs i del desenvolupament d'aquest projecte.\\
-\newline A més, a mesura que s'avanci en l'explicació es presentaran tant conceptes com noves parts que vagin apareixent al llarg del projecte.
-
-\subsection{Passos i idees inicials}
-Inicialment, tal i com s'ha esmentat diverses vegades al llarg del document, el projecte basa el seu "nucli" amb eines oferides per unes entitats anomenades tercers de confiança.\\
-La idea inicial del projecte es la d'usar els serveis que ofereixen aquestes entitats per tal d'externalitzar la signatura dels documents.\\
-\newline L'arquitectura resultant d'aquest objectiu esdevé en el següent esquema:\\
-\newline \textbf{\textit{Imatge esquema tercer de confiança}}\\
-\newline Com es pot veure a la imatge superior, la plataforma genera un document \textit{.pdf} corresponent a un consentiment informat fruit de la compra d'un servei per part del pacient, o en el seu defecte la prescripció d'un servei a un pacient per part d'un  metge; aquest document es mostra al pacient a través del frontend (posteriorment la plataforma \textit{Made of Genes}); per altre banda també s'enviarà al pacient a través del tercer de confiança el qual, prèviament, haurà signat, amb un certificat propi, aquest document per tal d'assegurar-ne l'autenticitat i el contingut i re-enviarà al pacient.\\
-El pacient rebrà el document i, en cas d'estar conforme amb tot el que s'explica al document, el signarà electrònicament fent ús d'un servei d'OTP que ofereix el mateix tercer de confiança.
-\\Un cop el pacient ha signat el consentiment informat, el tercer de confiança desa el consentiment signat, i en gestiona les proves de verificació en cas de ser necessàries.\\
-\newline Amb aquest full de ruta, el desenvolupament del projecte passa a ser un projecte que busca integrar un servei ofert per una companyia externa, tercer de confiança, que satisfà inicialment totes les necessitats plantejades i que suposa una càrrega de treball reduïda.\\
-\newline Pel que fa al model de dades, els canvis a realitzar dins del model actual de base de dades és mínim.\\
-\newline \textit{\textbf{parlar sobre el model de dades}}\\
-\newline Per la seva simplicitat i les eines que oferia per facilitat la integració, es va triar \textit{Lleida.net} com a opció més viable.\\
-\textit{Lleida.net} disposa d'un seguit de llibreries en diferents llenguatges que permeten una fàcil integració del seu servei amb la plataforma, així com la possibilitat d'iniciar el flux de certificació de consentiment informats i posterior signatura per part del client enviant un correu electrònic a una determinada conta de correu amb un assumpte pre establert.\\
-\newline El problema surt a la llum durant l'última fase del procés d'integració deñ mòdul desenvolupat amb el servei de \textit{Lleida.net}, quan per poder accedir al document signat, és necessari accedir-hi a través d'una plataforma pròpia del tercer de confiança; provocant així un canvi de context molt fort, i totalment inadmissible dins d'una plataforma que el que busca precisament és la unificació i homogeneïtzació dels seus serveis.\\
-\newline Aquest canvi de rumb obliga a buscar solucions que permetin satisfer les necessitats existents amb el grau de personalització desitjat, fins i tot si aquestes possibles solucions impliquen abandonar el concepte del tercer de confiança en post d'una solució que s'ajusti més al esperat en un primer moment.\\
-En aquesta ocasió, vistes les alternatives pel que fa a tercers de confiança i les seves possibles solucions, la possibilitat d'un canvi de tecnologia semblava d'allò més plausible.\\
-Arribats a aquest punt del desenvolupament, conceptes com \textit{Blockchain}, \textit{OTP} i \textit{empremta digital} prenen força dins del projecte.\\
-\newline Per una banda cal substituir totes les funcionalitats que fins ara depenien íntegrament del tercer de confiança:
+\label{desenvolupament:backend}
+Al llarg d'aquesta secció, farem referència a l'evolució al llarg del temps de la part servidora del projecte, encarregada de la gestió de les dades, així com de la comunicació amb serveis externs.\\
+\newline Per tant, el \textit{backend} serà l'encarregat de la gestió de tot el procés d'emissió, signatura i validació de consentiments informats, enviar les dades al \textit{frontend}, rebre'n de noves, i actualitzar les existents en cas de ser necessari.\\
+\newline Per tant, el que s'espera del \textit{backend} és el següent:
 \begin{itemize}
-    \item Validació del contingut del document
-    \item Signatura del document
-    \item Assegurar el no repudi 
+    \item Generació i emissió de documents (consentiments informats)
+    \item Gestió de la signatura electrònica de documents
+    \item Validació de documents
 \end{itemize}
-I per altre banda dotar al nou procés de la validesa i robustesa legal necessària.\\
+\clearpage
+\input{sections/desenvolupament/subseccions/back_init}
+\clearpage
+%Entesos el model de negoci de l'empresa i les necessitats a les quals es busca donar solució a través d'aquest Treball de Final de Grau, era necessari desenvolupar un projecte el més complet i funcional possible per tal de integrar-lo posteriorment amb la plataforma \textit{Made of Genes}.\\
+%A partir de les dades proporcionades i dels diferents casos d'ús i escenaris a contemplar, es comença a dissenyar un primer esquema de model de dades i de funcionalitats.\\
+%\newline Al llarg dels apartats d'aquesta secció veurem com va anar evolucionant, i quines decisions es van prendre en relació al \textit{backend} al llarg del transcurs i del desenvolupament d'aquest projecte.\\
+%\newline A més, a mesura que s'avanci en l'explicació, es presentaran tant conceptes com noves parts que vagin apareixent al llarg del projecte.
+%\subsection{Passos i idees inicials}
+%Inicialment, tal i com s'ha esmentat diverses vegades al llarg del document, el projecte basa el seu "nucli"  amb eines oferides per unes entitats anomenades tercers de confiança.\\
+%La idea inicial del projecte es la d'usar els serveis que ofereixen aquestes entitats, per tal d'externalitzar la signatura dels documents.\\
+%\newline L'arquitectura resultant d'aquest objectiu esdevé en el següent esquema:\\
+%\newline \textbf{\textit{Imatge esquema tercer de confiança}}\\
+%\newline Com es pot veure a la imatge superior, la plataforma genera un document \textit{.pdf} corresponent a un consentiment informat, fruit de la compra d'un servei per part del pacient, o en el seu defecte la prescripció d'un servei a un pacient per part d'un  metge; aquest document es mostra al pacient a través del frontend (posteriorment la plataforma \textit{Made of Genes}). Per una altra banda, també s'enviarà al pacient a través del tercer de confiança el qual, prèviament, haurà signat, amb un certificat propi, aquest document per tal d'assegurar-ne l'autenticitat i el contingut i re-enviarà al pacient.\\
+%El pacient rebrà el document i, en cas d'estar conforme amb tot el que s'hi explica, el signarà electrònicament fent ús d'un servei d'OTP que ofereix el mateix tercer de confiança.
+%\\Un cop el pacient ha signat el consentiment informat, el tercer de confiança desa el consentiment signat, i en gestiona les proves de verificació en cas de ser necessàries.\\
+%\newline Amb aquest full de ruta, el desenvolupament del projecte passa a ser un projecte que busca integrar un servei ofert per una companyia externa, tercer de confiança, que satisfà inicialment totes les necessitats plantejades i que suposa una càrrega de treball reduïda.\\
+%\newline Pel que fa al model de dades, els canvis a realitzar dins del model actual de base de dades, és mínim.\\
+%\newline \textit{\textbf{parlar sobre el model de dades}}\\
+%\newline Per la seva simplicitat i les eines que oferia per facilitat la integració, es va triar \textit{Lleida.net} com a opció més viable.\\
+%\textit{Lleida.net} disposa d'un seguit de llibreries en diferents llenguatges que permeten una fàcil integració del seu servei amb la plataforma, així com la possibilitat d'iniciar el flux de certificació de consentiment informats i posterior signatura per part del client, enviant un correu electrònic a una determinada compte de correu amb un assumpte pre establert.\\
+%\newline El problema surt a la llum durant l'última fase del procés d'integració del mòdul desenvolupat amb el servei de \textit{Lleida.net}, quan per poder accedir al document signat, és necessari accedir-hi a través d'una plataforma pròpia del tercer de confiança; provocant així un canvi de context molt fort, i totalment inadmissible dins d'una plataforma que el que busca precisament és la unificació i homogeneïtzació dels seus serveis.\\
+%\newline Aquest canvi de rumb obliga a buscar solucions que permetin satisfer les necessitats existents amb el grau de personalització desitjat, fins i tot si aquestes possibles solucions impliquen abandonar el concepte del tercer de confiança en espera d'una solució que s'ajusti més al desitjat en un primer moment.\\
+%En aquesta ocasió, vistes les alternatives pel que fa a tercers de confiança i les seves possibles solucions, la possibilitat d'un canvi de tecnologia semblava d'allò més plausible.\\
+%Arribats a aquest punt del desenvolupament, conceptes com \textit{Blockchain}, %\textit{OTP} i \textit{empremta digital} prenen força dins del projecte.\\
+%\newline Per una banda cal substituir totes les funcionalitats que fins ara depenien íntegrament del tercer de confiança:
+%\begin{itemize}
+%    \item Validació del contingut del document
+%    \item Signatura del document
+%    \item Assegurar el no repudi 
+%\end{itemize}
+%I per l'altra banda dotar al nou procés de la validesa i robustesa legal necessària.\\
 %La primera idea que ve al cap és la d'adquirir un certificat propi expedit per a una Autoritat Certificadora (CA) reconeguda i fer els canvis pertinents dins de la plataforma per tal de que poder treballar amb el certificat digital. El problema d'aquesta idea és que se surt del pressupost est
+\input{sections/desenvolupament/subseccions/back_choices}
+\clearpage
+\input{sections/desenvolupament/subseccions/back_final}
 
-\subsection{Cerca d'alternatives}
-La primera reacció al ser conscients del fracàs i el conseqüent endarreriment que suposa el no poder finalitzar la integració amb \textit{Lleida.net}, és la de buscar una alternativa a aquest que permeti continuar "externalitzant" la part de certificació i signatura de documents.\\
-El resultat és una llista de tercers de confiança que o bé per l'ús d'una plataforma similar per a la gestió de documents o bé per que les eines que ofereixen no solucionen el problema o bé per que el cost d'integració fent ús de les seves eines suposa un problema major, la idea de fer ús d'un tercer de confiança com a entitat certificadora i de validació de documents queda totalment descartada.\\
-\newline La següent opció a tenir en compte, es basa en l'obtenció d'un certificat pròpi emès per una Autoritat Certificadora (CA) reconeguda i modificar el mòdul per certificar els documents emesos pel mateix i fer ús d'un sistema d'OTP pròpi.\\
-Aquest, és un procés costós i que requereix implementar tota la infraestructura necessària per a la certificació i posterior val·lidació.\\
-Per aquests motius, és una línia que es decideix abandonar en post d'idees un xic més innovadores però sempre tenint.la en compte per si en algun moment s'ha de tornar a quest model.\\
-\newline Finalment, la tercera alternativa es basa en l'ús d'una tecnologia emergent anomenada \textit{Blockchain}, popularitzada per ser la tecnologia en la que la moneda virtual \textit{Bitcoin} basa el seu funcionament.\\
-Aquesta última opció, és la que per les raons que s'exposaran a continuació ha acabat sent implementada al projecte.\\
-\newline \textit{Made of Genes}, com s'ha dit diverses vegades al llarg del document, és una \textit{startup}, altrament dit empresa jove, amb recursos limitats i que no es poden malbaratar; per aquest motiu, un dels factors determinants en l'execució dels diferents projectes i la presa de decisions, és el cost que tindran aquests per l'empresa.\\
-Partint de l'anterior argument, un factor decisiu en la tria de solucions és que suposarà ja no només en temps, si no també en recursos, humans i econòmics.\\
-La plataforma \textit{Made of Genes} ja disposa d'un sistema d'enviament d'SMS que es re-aporfitarà per a l'enviament de còdis OTP per a la signatura.\\
-\newline Manca doncs, un sistema que ens permeti validar d'alguna forma el contingut dels documents i assegurar-ne el no repudi en cas de conflictes, en aquest punt es on entra en joc \textit{Blockchain}.\\
-\newline En capítols anteriors d'aquest document s'exposa el funcionament i estructura de \textit{blockchain} de forma més extensa.
-\subsection{Canvis en el projecte}
-Un cop segurs del nou rumb a seguir, cal valorar els canvis necessaris per adoptar la nova metodologia de funcionament que seguirà el \textit{backend} del projecte.\\
-Els canvis es poden agrupar en dos grups:
-\begin{enumerate}
-    \item Aquells que fan referència a la signatura de consentiments informats.
-    \item Aquells que fan referència a la validació i a assegurar el no repudi de documents.
-\end{enumerate}
-Fins l'abandonament dels serveis oferts pel tercer de confiança, els documents es signaven mitjançant l'enviament, per part d'aquest tercer, de missatges SMS amb un codi únic (o OTP) generat per a l'ocasió; la idea és dotar a la plataforma de la capacitat de generar aquests codis OTP, d'enviar-los i validar-los.
-Per a l'enviament, es farà ús del servei ofert per \textit{Clickatell}, un servei que ja es fa servir en altres processos dins de la plaforma \textit{Made of Genes} i que té un cost per missatge molt reduït.\\
-\newline \textit{Clickatell} ofereix una llibreria en format de \textit{bundle} pensada per integrar amb projectes basats en \textit{Symfony}, framework PHP sobre el que es construeix el \textit{backend} on, el que manca per fer, seguint el principi de desenvolupament S.O.L.I.D, és desenvolupar un servei al voltant de la llibreria que ens permeti independitzar-la del nostre codi; d'aquesta manera aconseguim que si en algun moment apareix una alternativa a \textit{Clickatell} que pel motiu que sigui interessa més, sigui fàcilment substituïble.\\
-Per a la generació del còdi OTP, farem ús de l'algorisme definit al RFC6238 (TOTP: Time-Based One-Time Password Algorithm) i la variació d'aquest últim definida a l'RFC4226 (HOTP: An HMAC-Based One-Time Password Algorithm).\\
-\newline \textbf{\textit{Parlar una mica del que diuen els RFC.... P-A-L-A-Z-O}}\\
-\newline Pel que fa a la validació del contingut dels documents i assegurar el seu posterior no repudi, com ja es va anticipant unes línies enrere, es vol fer servir \textit{Blockchain}.\\
-La tecnologia de \textit{blockchain} s'explica amb detall al capítol 3 del document.\\
-\newline Aplicada concretament al projecte que ens ocupa, es busca aprofitar el funcionamet i la potència de \textit{blockchain} per assegurar el no repudi dels documents mitjançant la publicació de l'empremta digital (hash SHA-256) del consentiment informat via petites transaccions de bitcoin.\\
-Per fer una mica de memòria, el hash d'un document, com s'ha explicat en capítols anteriors del document, és una cadena de caràcters generada partir del contingut del mateix document.\\
-Unint el hash generat del document a la \textit{blockchain}, s'assegura que el contingut del document que s'acaba de signar, queda registrat on ningú el podrà modificar sense que algú altre se n'adoni; recordem que un cop un bloc actualitza les seves transaccions i les replica a 6 blocs diferents, el contingut d'aquest blocs, i en conseqüencia les transacions registrades, és inmutable.\\
-Per a dur a terme aquesta tasca, s'ha buscat un servei que ens permeti publicar les empremtes digitals dels documents genetrats a la \textit{blockchain}; el servei es qüestió es l'anomenat \textit{Origin Stamp}.\\
-\textit{Origin Stamp} és un servei sense ànim de lucre que facilita la publicació de hashos a la \textit{blockchain} a través de micro transaccions de satoshis, la unitat més petita de bitcoin, equivalen a 0.00000001 bitcoins.\\
-El funcionament del servei és senzill; \textit{Origin Stamp} agrega hashs durant 24 hores a través d'una senzilla API Rest o des del propi portal del servei, que permet pujar fitxers i calcular-ne l'emprempta digital o bé introduïr el propi hash prèviament calculat per l'usuari; un cop superat aquest lapse de 24 hores, realitzen una transacció bitcoin equivalent a un satoshi.\\
-El contingut d'aquesta transació, és un hash que agrega tots els hash acumulats al llarg d'aquestes 24 hores.\\
-En cas de que es desitgi la immediata publicació a la blockchain, el servei accepta donacions d'1\$.
-\subsection{Fase final}
-La recta final del desenvolupament del backend del projecte, s'inicia en el moment en el que s'acaba l'adaptació del mateix amb les noves metodologíes de funcionament.\\ 
-Un cop arribats a aquest estadi, es decideix que el que s'ha de publicar a la \textit{blockchain} no és el hash del consentiment informat, sino el hash d'un document que certifiqui que un usuari determinat, en un moment determinat i amb un codi OTP determinat, ha signat mitjançant l'anterior OTP un consentiment informat amb una empremta digitar determinada.\\
-Per aquest fet, es decidieix modificar la forma amb la que es generen els documents; creant un microservei encarregat d'aquesta tasca.\\
-Aquest nou microservei disposa d'una senzilla API Rest que ens permet enviar les dades necessàries per a que ens torni com a resposta el contingut, codificat en base64, del document desitjat; ja sigui el consentiment informat o bé el coprovant de signatura.\\
-Amb la creació d'aquest microservei independitzem el procés de creació de documents del nucli del projecte, alhora que guanyem una important millora en el temps de creació de documents.\\
-\newline L'esquema resultant del projecte és el següent:\\
-\newline \textit{\textbf{esquema resultant de la plataforma}}\\
-\newline \textit{\textbf{Parlar dels canvis al model de dades + esquema de les taules}}
-Pel que fa al model de dades resultant, hem passat d'un simple parell de taules a la base de dades (figura anterior), a tenir-ne unes cuantes més, a la figura següent es pot veure el model resultant:\\
-\newline \textbf{\textit{model actual}}

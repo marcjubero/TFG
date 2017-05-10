@@ -1,0 +1,79 @@
+\section{Hash, timestamping i blockchain}
+\label{arquitectura:hash_timestamping}
+%\textbf{Oscar}: \textit{Com es fa el hash i timestamping Introdueix l'esquema de CA i Blockchain}
+%Una de les parts mes importants del sistema, per no dir la més important, és la capacitat d'assegurar el no repudi dels documents signats.\\
+%\newline Aquesta capacitat de no repudi dels documents, s'aconsegueix mitjançant segellat de temps per una \textit{Timestamp Authorities} i publicant a la \textit{Blockchain} de \textit{Bitcoin}.\\
+%\newline Per tant, un cop efectuada la signatura del document mitjançant el codi OTP, es genera el que s'anomena un comprovant de signatura. Aquest document, especifica que un usuari \textit{U}, en un moment determinat \textit{T}, ha signat amb un codi OTP \textit{O} un document amb empremta digital (hash) \textit{H}.\\
+%\newline El \textit{hash} que es publicarà a la \textit{blockchain} o al que se li aplicarà el segellat de temps, és el del comprovant de signatura de creat anteriorment.
+%\begin{figure}[h]
+%\includegraphics[scale=0.1]{sections/arquitectura/hash_timstamp_workflow.jpg}
+%\centering
+%\caption{Generació i certificació de documents}
+%\label{fig:hash_timestamping_workflow}
+%\end{figure}
+%\newline A la figura anterior, es mostra el flux d'esdeveniments desencadenat per la signatura del consentiment informat.\\
+%El \textit{hash} emprat, es calcula amb l'algorisme SHA256 i la funció de hash del propi llenguatge, a partir del contingut del document.\\
+%\newline Seguint l'estructura de codi del projecte, ambdues funcionalitats (timestamping i blockchain) han estat encapsulades en serveis independents, per tal de que si en un moment moment donat es decideix canviar de tecnologia o de proveïdor de servei, per a la plataforma aquest canvi sigui totalment transparent.
+%\clearpage
+%\input{sections/arquitectura/subsections/timestamping}
+%\clearpage
+%\input{sections/arquitectura/subsections/blockchain}
+Després de la generació de documents, el pas següent resideix en la certificació del contingut d'aquests.\\
+\newline Per a dur a terme aquesta tasca, i seguint amb l'arquitectura presentada anteriorment (\nameref{arquitectura:back_clean}), s'han separat els diferents casos d'ús en serveis independents.
+\begin{figure}[h]
+\includegraphics[scale=0.4]{sections/arquitectura/hashTimestamping_usecase.png}
+\centering
+\caption{Hash i timestamping - Cas d'ús}
+\label{fig:hash_timestamping_usecase}
+\end{figure}
+\newline La Figura \ref{fig:hash_timestamping_usecase} ens mostra els diferents casos d'ús d'aquesta part del sistema d'emissió i validació.\\
+%\begin{itemize}
+%    \item El primer cas d'ús, referent a la creació del hash, serveix com a capa d'abstracció per a per a poder usar aquesta funcionalitat independentment des de qualsevol punt del projecte.\\ 
+%    L'entrada ha de ser forçosament la ruta a un fitxer existent.\\
+%    La sortida, és una cadena de caràcters basada en el contingut del fitxer d'entrada.
+%    \item Aquest segon cas d'ús, publicació del hash a la \textit{blockchain}, fa referència a un primer i principal mètode de certificació de la signatura.
+%    \item Finalment, aquest tercer cas d'ús, ús de segellat de temps, busca donar un grau més de seguretat al procés de signatura electrònica descrit anteriorment.
+%\end{itemize}
+%Al llarg de les pròximes seccions es tractarà amb més detall els casos d'ús que fan referència a la certificació del contingut dels documents.
+%\clearpage
+%\input{sections/arquitectura/subsections/blockchain}
+%\input{sections/arquitectura/subsections/timestamping}
+\subsubsection{Crear hash de document}
+%Serveix com a capa d'abstracció per a per a poder usar aquesta funcionalitat independentment des de qualsevol punt del projecte.\\ 
+%L'entrada ha de ser forçosament la ruta a un fitxer existent.\\
+%La sortida, és una cadena de caràcters basada en el contingut del fitxer d'entrada.
+Un cop s'ha signat el consentiment informat i s'ha generat el comprovant de signatura, el sistema ha de calcular el hash del comprovant per tal de poder certificar-lo (casos d'ús següents).\\
+\newline Seguint amb l'arquitectura vista al principi del capítol (\nameref{arquitectura:back_clean}), la fucionalitat s'encapsula en un servei per a poder fer-la servir en qualsevol punt mitjançant la injecció de dependències que proposen els principis \nameref{arquitectura:back_solid}.\\
+\newline A la següent figura es pot veure el comportament del servei vers el sistema:
+\begin{figure}[h]
+\includegraphics[scale=0.5]{sections/arquitectura/hashTimestamping_hashService.png}
+\centering
+\caption{Hash i timestamping - Hash service}
+\label{fig:hash_timestamping_hashService}
+\end{figure}
+\newline Tal i com il·lustra la figura anterior, l'entrada del servei ha de ser un document, en el cas de la figura pdf, o en el seu defecte la ruta al fitxer.\\
+Si la ruta/fitxer és correcte, el servei retorna hash.
+\clearpage
+%El sistema ha de ser capaç de crear un \textit{hash} a partir de documents existents.\\
+%De la mateixa manera, 
+\subsubsection{Publicar hash a la \textit{blockchain}}
+De la mateixa manera que el component descrit a la secció \ref{arquitectura:generacio_documents}, aquest cas d'ús es composa de dos parts:
+\begin{itemize}
+    \item Un dels serveis del \textit{backend}, desenvolupat específicament per encapsular aquest cas d'ús i poder-lo fer servir des de qualsevol punt del projecte.
+    Aquest servei respon a la necessitat d'un adaptador per a que el \textit{backend} es pugui comunicar amb el servei extern
+    \item I per l'altra, el servei extern que permet publicar el \textit{hash} a la blockchain de bitcoin.\\
+    Aquest servei extern, està dissenyat com una API Rest
+\end{itemize}
+La comunicació entre ambdós components es realitza a través de crides \textit{HTTP/Get} i \textit{HTTP/Post}, definides a documentació del servei.\\
+\newline Amb una finalitat merament il·lustrativa, aquest cas d'ús respondria a una arquitectura similar a la que mostra la figura següent:
+\begin{figure}[h]
+\includegraphics[scale=0.5]{sections/arquitectura/hashTimestamping_blockchainService.png}
+\centering
+\caption{Hash i timestamping - Blockchain service}
+\label{fig:hash_timestamping_blockchainService}
+\end{figure}
+\subsubsection{Segellat de temps amb el hash}
+Amb aquest cas d'ús, es busca donar la confiança suficient, a aquells que no vegin amb bons ulls, l'ús de \textit{blockchain} com a mètode per a certificar l'existència d'un document en un instant de temps determinat.\\
+Tant mateix, com s'ha dit anteriorment, suposa un extra important en el moment de defensar la immutabilitat dels documents.\\
+\newline Per aquesta ocasió, l'estructura i funcionament és molt similar al que s'ha vist en el cas d'ús anterior. Dos serveis, un pertanyent a l'aplicació, amb l'objectiu d'encapsular i donar accés des de qualsevol punt de la plataforma, i l'altre, un servei extern de tercers que ofereix funcions de segellat de temps.
+%\newline L'ús de serveis externs obliga a l'ús d'adaptadors que facin la funció d'enllaç entre l'aplicació desenvolupada per aquest projecte, i el servei extern.

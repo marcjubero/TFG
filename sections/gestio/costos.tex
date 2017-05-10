@@ -1,53 +1,119 @@
-\section{Costos}
-\label{costs}
-Al llarg del projecte es poden agrupar les diferent despeses en tres categories diferents:
+\section{Identificació i estimació de costos}
+\label{gestio:despeses}
+Al llarg del projecte es poden agrupar les diferents despeses en tres categories diferents:
 \begin{itemize}
 	\item Equip de desenvolupament
 	\item Maquinari
-	\item Infraestructura
+	\item Costos indirectes al projecte
 \end{itemize}
 
 \subsection{Equip de desenvolupament}
-Com bé indica el nom, aquestes despeses corresponen al pagament dels salaris de les persones que participen al projecte.\\
-Dins de l'equip de desenvolupament hi podem trobar dos rols clarament definits:
+Les despeses que aquí es recullen, tenen relació amb el pagament de salaris als treballadors.\\
+Els membres de l'equip de desenvolupament que participa d'aquest projecte són:
 \begin{itemize}
-	\item Desenvolupador, l'estudiant que porta a terme el desenvolupament del projecte, i que per tant, dedica tota la seva activitat dins de l'empresa a realitzar les tasques pertinents.
-	\item \textit{Project manager}, responsable de gestionar el projecte al llarg de tot el seu desenvolupament; des de l'especificació inicial fins a la integració amb la plataforma, alhora que assessora al desenvolupador en aspectes claus del projecte. 
+    \item L'estudiant, assumirà el rol de desenvolupador principal del projecte, dedicant el total de la seva jornada laboral a aquest.
+    \item \textit{Project manager}, responsable dins de l'empresa de gestionar el projecte en tot el seu desenvolupament i assessorar a l'estudiant quan així ho necessiti.
 \end{itemize}
-
-\subsection{Maquinari}
-Corresponent a les eines de treball que es posen a disposició de l'estudiant per tal que pugui dur a terme la seva activitat dins de l'empresa. \\
-En aquest cas es tracta d'un Apple Mac mini amb un valor de compra de 796.28 \euro
-
-\subsection{Infraestructura}
-Les despeses d'infraestructura fan referència a totes aquelles despeses que van relacionades de forma més indirecta amb el projecte, ja que també es poden aplicar a l'activitat diària dins de l'empresa.\\
-\newline Dins d'aquesta categoria queden incloses despeses tals com la mensualitat dels nodes de computació sobre els quals se suporta el projecte (25\euro/mes), llum, consultes legals als advocats, llicències de software, etc. que ascendeixen aproximadament a uns \EUR{150} mensuals.
-
-
-\clearpage
-\subsection{Taula de costos}
-A la següent taula es pot veure, a mode de resum, les despeses del projecte.
+Per als anteriors participants, cal tenir en compte un seguit de consideracions:
+\begin{enumerate}
+    \item Per a l'estudiant, queda pactat per conveni el total del seu sou. En aquest cas són \EUR{7200} a repartir entre els 8 mesos de durada del projecte. 
+    \item Així mateix, l'empresa haurà d'abonar a la UPC un import de \EUR{1367.78} en concepte de fons per mantenir els serveis i cobrir costos de gestió.
+    \item En el cas del \textit{project manager}, s'ha estimat que la seva labor equival a una remuneració mensual de \EUR{250}.
+\end{enumerate}
+Tenint en compte les anteriors consideracions, la taula de costos de personal esdevé de la següent manera:
 \begin{table}[h!]
   \centering
   \label{tab:costos}
-  \begin{tabular}{l l l l l}
-    	Concepte & & \euro/hora & Cost Mensual & Cost Total\\
+  \begin{tabular}{l  l  l}
+    	\textbf{Rol} & \textbf{Concepte} & \textbf{Import} \\
+    	\midrule
+    	\textbf{Desenvolupador} &  & \\
+    	& Salari & 7.200\euro \\
+    	& Contrib. UPC & 1367.78\euro\\
+    	\textbf{\textit{Project manager}} &  & \\
+    	& Contribució & 2000\euro\\
+    	\midrule
+    	& \textbf{Total} & \textbf{10567.78\euro} \\
+    	\bottomrule
+  \end{tabular}
+  \caption{Taula de costos de personal}
+\end{table}
+\clearpage
+\subsection{Maquinari}
+Corresponent a les eines de treball que es posen a disposició de l'estudiant per tal que pugui dur a terme la seva activitat dins de l'empresa. \\
+\newline El maquinari que s'ha posat a disposició de l'estudiant és:
+\begin{itemize}
+    \item Apple Mac Mini, amb un valor de compra de 1000\euro
+    \item Dos pantalles Dell, amb un valor de compra de 350\euro/unitat
+\end{itemize}
+Al tractar-se de béns comprats per a l'ocasió, però que es faran servir en més projectes, no es pot imputar l'import complet, si no que s'aplicarà l'amortització pertinent als 8 mesos que dura el projecte.\\
+\newline La taula d'amortitzacions és la següent:
+\begin{table}[h!]
+  \centering
+  \label{tab:costos}
+  \begin{tabular}{l  c  c}
+    	\textbf{Tipus d'element} & \textbf{Coeficient màxim} & \textbf{Període d'anys màxim} \\
+    	\midrule
+    	Equips electrònics & 20\% & 10\\
+    	Equips per processos d'informació & 25\% & 8\\ 
+    	\bottomrule
+  \end{tabular}
+  \caption{Taula d'amortitzacions (a partir d'1/1/2015)}
+\end{table}
+\newline Tenint en compte la taula anterior, els imports imputables per cada element són:
+\begin{itemize}
+    \item Cost imputable Apple Mac Mini\\
+    \begin{gather*}
+        \frac{1000 * 20\%}{12 mesos} = 16.67\text{\euro}/mes\\
+        \\16.67\text{\euro}/mes * 8 mesos = \textbf{133.33\text{\euro}}
+    \end{gather*}
+    \item Cost imputable pantalles Dell
+    \begin{gather*}
+        \frac{(2*350\text{\euro}/pantalla) * 25\%}{12 mesos} = 14.58\text{\euro}/mes\\
+        \\14.58\text{\euro}/mes * 8 mesos = \textbf{116.67\text{\euro}} 
+    \end{gather*}
+\end{itemize}
+Partint dels càlculs anteriors, el cost del maquinari, amortitzat durant els 8 mesos que dura el projecte, és el següent:
+    \begin{gather*}
+        133.33\text{\euro} + 116.67\text{\euro} = \textbf{249.99\text{\euro}}
+    \end{gather*}
+\clearpage
+\subsection{Costos indirectes}
+Dins del concepte de despeses indirectes s'hi inclou tot allò no relacionat directament amb el projecte, si no que s'apliquen a l'empresa en general.\\
+Les despeses indirectes es poden classificar en:
+\begin{itemize}
+    \item Nodes de computació, un total de \EUR{50} mensuals.
+    \item Despeses en concepte de llum, aigua, gas, lloguer d'oficina, etc., un total de \EUR{200} mensuals.
+\end{itemize}
+\newline Per tant a la suma de costos del projecte, cal afegir un import de \textbf{\EUR{250}} mensuals, en concepte de costos indirectes.
+\subsection{Taula de costos}
+A la següent taula es pot veure, a mode de resum, les despeses del projecte per als seus 8 mesos de durada:
+\begin{table}[h!]
+  \centering
+  \label{tab:costos}
+  \begin{tabular}{l l l l}
+    	\textbf{Concepte} & & \textbf{Cost Mensual} & \textbf{Cost Total}\\
     	\midrule
     	\textbf{Personal} &  &  & \\
-    	& Desenvolupador& 8 & (*) &9968\euro\\
-    	& Project Manager & & \EUR{200} & \EUR{1600} \\
-    	\textbf{Maquinari} & & - & \EUR{22,12} & \EUR{176,96}\\
+    	& Desenvolupador & \EUR{900} & \EUR{7200}\\
+    	& Contrib. UPC &  & \EUR{1367.78}\\
+    	& Project Manager & \EUR{250} & \EUR{2000} \\
+    	\midrule
+    	\textbf{Maquinari} & & & \\
+    	& Mac mini & \EUR{16.67} & \EUR{133.33} \\
+    	& Pantalles Dell & \EUR{14.58} & \EUR{116.67} \\
+    	\midrule
     	\textbf{Infraestructura} & & \\
-    	& Nodes computació & - & \EUR{25} & \EUR{200} \\
-    	& Despeses vàries & - & \EUR{150} & \EUR{1200} \\
+    	& Nodes computació & \EUR{50} & \EUR{400} \\
+    	& Despeses vàries & \EUR{200} & \EUR{1600} \\
     	\bottomrule
-    	\textbf{Total} & & & & \textbf{\EUR{13.144,96}}
+    	\textbf{Total} & & & \textbf{\EUR{12817,78}}
   \end{tabular}
-  \caption{Taula de costos.}
+  \caption{Taula de costos del projecte}
 \end{table}
-\newline En relació a les dades presentades a la taula anterior, cal tenir en compte unes breus consideracions:
-\begin{itemize}
-	\item Al llarg del projecte s'ha realitzat una ampliació d'hores del contracte, amb el respecetiu augment de sou, però mantenint sempre el preu per hora marcat per la Universitat Politècnica de Catalunya: \EUR{8}/hora.
-	\item El cost total del maquinari és de \EUR{796.28}, però amb una amortització de 3 anys, suposa una despesa mensual de \EUR{22.12}.
-\end{itemize}
-Finalment, en relació al gantt presentat al lliurable anterior, cal dir que les tasques representades en el gràfic són independents al presupost presentat a la taula, ja que es tracta d'un pressupost tancat abans fins i tot de determinar les tasques que es duran a terme i que, en qualsevol dels casos, es tracta de despeses heretades del projecte al qual aquest TFG s'integrarà en un futur.
+%\newline En relació a les dades presentades a la taula anterior, cal tenir en compte unes breus consideracions:
+%\begin{itemize}
+%	\item Al llarg del projecte s'ha realitzat una ampliació d'hores del contracte, amb el respecetiu augment de sou, però mantenint sempre el preu per hora marcat per la Universitat Politècnica de Catalunya: \EUR{8}/hora.
+%	\item El cost total del maquinari és de \EUR{796.28}, però amb una amortització de 3 anys, suposa una despesa mensual de \EUR{22.12}.
+%\end{itemize}
+%Finalment, en relació al gantt presentat al lliurable anterior, cal dir que les tasques representades en el gràfic són independents al presupost presentat a la taula, ja que es tracta d'un pressupost tancat abans fins i tot de determinar les tasques que es duran a terme i que, en qualsevol dels casos, es tracta de despeses heretades del projecte al qual aquest TFG s'integrarà en un futur.
